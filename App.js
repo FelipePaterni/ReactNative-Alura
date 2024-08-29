@@ -11,26 +11,36 @@ export default class App extends Component {
     super(props);
     this.state = {
       menu: 0,
-      lists: [
-        { key: 1, nome: "        ", valor: 0 },
-        { key: 2, nome: "Roupa de cama", valor: 59 },
-        { key: 3, nome: "Roupa de banho", valor: 37 },
-        { key: 4, nome: "Eletro/Eletronico", valor: 25.70 },
-        { key: 5, nome: "Geral", valor: 70 },
+      lista: [
+        { key: 1, nome: '     :P      ', valor: 0 },
+        { key: 1, nome: 'Roupa de Cama', valor: 59 },
+        { key: 1, nome: 'Roupa de Banho', valor: 37 },
+        { key: 1, nome: 'Eletro/Eletrônico', valor: 25.70 },
+        { key: 1, nome: 'Geral', valor: 70},
       ]
     };
   };
+
   render() {
+    let listaItem = this.state.lista.map((v, k) => {
+      return <Picker.Item key = {k} value = {k} label = {v.nome}/>
+    })
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}>------------Menu------------</Text>
-        <Picker selectedValue={this.state.menu}
-          onValueChange={(itemValue, itemIndex) => this.setState({ menu: itemValue })}>
-          <Picker.Item key={1} value={1} label={"     "} />
-          <Picker.Item key={2} value={2} label={"Roupa de Cama"} />
-          <Picker.Item key={3} value={3} label={"Roupa de Banho"} />
-          <Picker.Item key={4} value={4} label={"Setor de Eletrônicos"} />
+        <Picker selecdValue={this.state.menu}
+        on onValueChange={(itemValue, itemIndex) => this.setState({menu:itemValue})}> 
+          <Picker.Item key={4} value={4} label={'             '} />
+          <Picker.Item key={1} value={1} label={'Roupa de Cama'} />
+          <Picker.Item key={2} value={2} label={'Roupa de Banho'} />
+          <Picker.Item key={3} value={3} label={'Setor de Eletrônicos'} />
         </Picker>
+
+<Text style={styles.menu}>Você escolheu: {this.state.lista[this.state.menu].nome}</Text>
+<Text style={styles.menu}>R${this.state.lista[this.state.menu].valor.toFixed(2)}</Text>
+{/*<Text style={{fontSize: 30}}>{this.state.menu}</Text>*/}
+
+ 
       </View>
     );
   }
